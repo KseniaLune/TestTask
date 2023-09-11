@@ -17,5 +17,5 @@ jobs:
         with:
           java-version: '17'
           distribution: zulu
-      - name: run tests
+      - name: Run Tests
         run: ./gradlew test
