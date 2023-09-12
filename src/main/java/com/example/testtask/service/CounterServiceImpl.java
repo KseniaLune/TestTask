@@ -12,15 +12,15 @@ import java.util.regex.Pattern;
 @Service
 public class CounterServiceImpl implements CounterService {
 
-    private static Pattern latinLetters = Pattern.compile("^[a-z]*$");
+    private static Pattern latinLetters = Pattern.compile("^[a-zA-Z]*$");
 
     @Override
     public String validating(ReqBody body) {
         String letters = body.getLetters();
         if (!latinLetters.matcher(letters).find()) {
-            throw new IllegalArgumentEx("The letters has to be latin lower-case letters");
+            throw new IllegalArgumentEx("The letters has to be latin letters");
         }
-        return letters.toLowerCase();
+        return letters;
     }
 
     @Override
