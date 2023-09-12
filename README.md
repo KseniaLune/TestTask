@@ -1,5 +1,5 @@
 ## Info
-Spring application for Т1 Консалтинг
+Spring application
 
 ### Example:
 **Input** - `aaabbccccc` 
