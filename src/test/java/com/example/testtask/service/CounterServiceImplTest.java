@@ -28,7 +28,7 @@ class CounterServiceImplTest {
     private CounterServiceImpl service;
 
     @Test
-    void validating_shouldReturnStringFromLowerLatinLetters_whenReqBodyIsValidAndLatinLettersInLowerCase() {
+    void validating_shouldReturnStringFromLatinLetters_whenReqBodyIsValidAndLatinLetters() {
         //given
         String lettersValid = "aaabbccccc";
         ReqBody reqBody = new ReqBody(lettersValid);

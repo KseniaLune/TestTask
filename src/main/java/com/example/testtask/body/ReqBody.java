@@ -15,9 +15,9 @@ import org.hibernate.validator.constraints.Length;
 @Builder
 @Schema(description = "Request Body in JSON format")
 public class ReqBody {
-    @Schema(name = "letters", description = "Not null, not blank, length max = 2 million, only latin lower-case letters", example = "aaabbbccc")
+    @Schema(name = "letters", description = "Not null, not blank, length max = 2 million, only latin letters", example = "aaabbbccc")
     @NotNull(message = "Letters must be not null.")
-    @Length(max = 2000000, message = "Letters length must be smaller than 2 million symbols.")
+    @Length(max = 2 * 1024 * 1024, message = "Letters length must be smaller than 2 million symbols.")
     @NotBlank(message = "Letters must be not blank.")
     private String letters;
 }

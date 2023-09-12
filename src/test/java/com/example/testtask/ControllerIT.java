@@ -60,7 +60,7 @@ class ControllerIT {
                 content().contentType(MediaType.APPLICATION_JSON),
                 content().json("""
                     {
-                        "message": "The letters has to be latin lower-case letters",
+                        "message": "The letters has to be latin letters",
                         "errors": null
                     }
                     """)
