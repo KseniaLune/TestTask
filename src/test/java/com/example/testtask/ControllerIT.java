@@ -36,11 +36,7 @@ class ControllerIT {
                 content().contentType(MediaType.APPLICATION_JSON),
                 content().json("""
                     {
-                         "result": {
-                             "c": 5,
-                             "a": 3,
-                             "b": 2
-                         }
+                        "result":["c:5","a:3","b:2"]
                      }
                     """)
             );

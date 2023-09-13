@@ -2,12 +2,11 @@ package com.example.testtask.service;
 
 import com.example.testtask.body.ReqBody;
 
-import javax.swing.text.AttributeSet;
-import java.util.Map;
+import java.util.List;
 
 public interface CounterService {
 
     String validating(ReqBody body);
 
-    Map<Character, Integer> counting(String letters);
+    List<String> counting(String letters);
 }

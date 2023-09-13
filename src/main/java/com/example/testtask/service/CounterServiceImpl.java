@@ -2,8 +2,6 @@ package com.example.testtask.service;
 
 import com.example.testtask.body.ReqBody;
 import com.example.testtask.exception.IllegalArgumentEx;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -23,8 +21,10 @@ public class CounterServiceImpl implements CounterService {
         return letters;
     }
 
+
     @Override
-    public Map<Character, Integer> counting(String letters) {
+    public List<String> counting(String letters) {
+
         Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < letters.length(); i++) {
             if (!map.containsKey(letters.charAt(i))) {
@@ -33,15 +33,10 @@ public class CounterServiceImpl implements CounterService {
                 map.put(letters.charAt(i), map.get(letters.charAt(i)) + 1);
             }
         }
-
-        ArrayList<Map.Entry<Character, Integer>> entries = new ArrayList<>(map.entrySet());
-        entries.sort(Map.Entry.comparingByValue());
-        Collections.reverse(entries);
-
-        Map<Character, Integer> result = new LinkedHashMap<>();
-        for (Map.Entry<Character, Integer> entry : entries) {
-            result.put(entry.getKey(), entry.getValue());
-        }
+        List<String> result = map.entrySet().stream()
+            .sorted(Map.Entry.<Character, Integer>comparingByValue().reversed())
+            .map(c -> c.getKey() + ":" + c.getValue())
+            .toList();
 
         return result;
     }

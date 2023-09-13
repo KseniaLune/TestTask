@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,12 +52,9 @@ class CounterServiceImplTest {
     @Test
     void counting_shouldCountingLettersAndReturnMapWithResultInDescendingOrder() {
         String letters = "aaabccccc";
-        Map<Character, Integer> valid = new LinkedHashMap<>();
-        valid.put('c', 5);
-        valid.put('a', 3);
-        valid.put('b', 1);
+        List<String> valid = List.of("c:5","a:3","b:1");
 
-        Map<Character, Integer> result = service.counting(letters);
+        List<String> result = service.counting(letters);
         assertNotNull(result);
         assertEquals(valid, result);
     }
