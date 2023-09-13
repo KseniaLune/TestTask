@@ -12,7 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,12 +33,9 @@ class ControllerTest {
         String letters = "aaabbccccc";
         ReqBody reqBody = new ReqBody(letters);
         when(service.validating(reqBody)).thenReturn(letters);
-        Map<Character, Integer> validMap = new LinkedHashMap<>();
-        validMap.put('c', 5);
-        validMap.put('a', 3);
-        validMap.put('b', 2);
-        when(service.counting(letters)).thenReturn(validMap);
-        RespBody respBody = new RespBody(validMap);
+        List<String> validList = List.of("c:5","a:3","b:2");
+        when(service.counting(letters)).thenReturn(validList);
+        RespBody respBody = new RespBody(validList);
 
         ResponseEntity<RespBody> actual = controller.countingLetter(reqBody);
 

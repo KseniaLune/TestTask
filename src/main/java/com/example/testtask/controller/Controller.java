@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -29,11 +30,11 @@ public class Controller {
     public ResponseEntity<RespBody> countingLetter(@Valid @RequestBody ReqBody body) {
 
         String validatingLetters = service.validating(body);
-        Map<Character, Integer> counting = service.counting(validatingLetters);
+        List<String> pairs = service.counting(validatingLetters);
 
         return ResponseEntity
             .status(HttpStatus.OK)
             .contentType(MediaType.APPLICATION_JSON)
-            .body(new RespBody(counting));
+            .body(new RespBody(pairs));
     }
 }
