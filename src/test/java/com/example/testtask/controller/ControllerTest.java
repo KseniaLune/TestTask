@@ -33,9 +33,12 @@ class ControllerTest {
         String letters = "aaabbccccc";
         ReqBody reqBody = new ReqBody(letters);
         when(service.validating(reqBody)).thenReturn(letters);
-        List<String> validList = List.of("c:5","a:3","b:2");
-        when(service.counting(letters)).thenReturn(validList);
-        RespBody respBody = new RespBody(validList);
+        LinkedHashMap<Character, Integer> map = new LinkedHashMap<>();
+        map.put('c',5);
+        map.put('a',3);
+        map.put('b',2);
+        when(service.counting(letters)).thenReturn(map);
+        RespBody respBody = new RespBody(map);
 
         ResponseEntity<RespBody> actual = controller.countingLetter(reqBody);
 

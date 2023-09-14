@@ -2,11 +2,11 @@ package com.example.testtask.service;
 
 import com.example.testtask.body.ReqBody;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 
 public interface CounterService {
 
     String validating(ReqBody body);
 
-    List<String> counting(String letters);
+    LinkedHashMap<Character, Integer> counting(String letters);
 }

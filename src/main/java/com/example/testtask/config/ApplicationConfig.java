@@ -14,7 +14,7 @@ public class ApplicationConfig {
             .info(new Info()
                 .title("Test task for T1 Консалтинг")
                 .description("Test task by Oleinik Kseniia")
-                .version("FINAL")
+                .version("1.0.1")
             );
     }
 }

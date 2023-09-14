@@ -1,7 +1,7 @@
 package com.example.testtask.controller;
 
 import com.example.testtask.exception.ExBody;
-import com.example.testtask.exception.IllegalArgumentEx;
+import com.example.testtask.exception.SymbolsValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -14,9 +14,9 @@ import java.util.List;
 @RestControllerAdvice
 public class ControllerAdvice {
 
-    @ExceptionHandler(IllegalArgumentEx.class)
+    @ExceptionHandler(SymbolsValidationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ExBody handleIllegalArgument(IllegalArgumentEx ex) {
+    public ExBody handleIllegalArgument(SymbolsValidationException ex) {
         return new ExBody(ex.getMessage());
     }
 

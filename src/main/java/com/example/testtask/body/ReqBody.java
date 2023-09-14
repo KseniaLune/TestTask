@@ -20,4 +20,6 @@ public class ReqBody {
     @Length(max = 2 * 1024 * 1024, message = "Letters length must be smaller than 2 million symbols.")
     @NotBlank(message = "Letters must be not blank.")
     private String letters;
+
+
 }
