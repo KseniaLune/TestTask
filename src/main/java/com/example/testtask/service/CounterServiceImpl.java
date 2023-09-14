@@ -1,11 +1,14 @@
 package com.example.testtask.service;
 
 import com.example.testtask.body.ReqBody;
-import com.example.testtask.exception.IllegalArgumentEx;
+import com.example.testtask.exception.SymbolsValidationException;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Service
 public class CounterServiceImpl implements CounterService {
@@ -16,15 +19,13 @@ public class CounterServiceImpl implements CounterService {
     public String validating(ReqBody body) {
         String letters = body.getLetters();
         if (!latinLetters.matcher(letters).find()) {
-            throw new IllegalArgumentEx("The letters has to be latin letters");
+            throw new SymbolsValidationException("The letters has to be latin letters");
         }
         return letters;
     }
 
-
     @Override
-    public List<String> counting(String letters) {
-
+    public LinkedHashMap<Character, Integer> counting(String letters) {
         Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < letters.length(); i++) {
             if (!map.containsKey(letters.charAt(i))) {
@@ -33,12 +34,9 @@ public class CounterServiceImpl implements CounterService {
                 map.put(letters.charAt(i), map.get(letters.charAt(i)) + 1);
             }
         }
-        List<String> result = map.entrySet().stream()
+        LinkedHashMap<Character, Integer> result = map.entrySet().stream()
             .sorted(Map.Entry.<Character, Integer>comparingByValue().reversed())
-            .map(c -> c.getKey() + ":" + c.getValue())
-            .toList();
-
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new));
         return result;
     }
-
 }
